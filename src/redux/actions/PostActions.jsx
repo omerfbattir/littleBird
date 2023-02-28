@@ -7,10 +7,11 @@ export function listPosts(userID) {
         if(userID)
             {
                 url = url + '?userId=' + userID;
-            }
+            
         return fetch(url)
             .then(response => response.json()).
             then(result => dispatch(listPostSuccess(result)))
+        }
     }
 }
 

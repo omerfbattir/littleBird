@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Card, CardHeader, ListGroup, ListGroupItem } from 'reactstrap'
 import { listPosts } from '../../redux/actions/PostActions'
+import PostCard from '../PostCard/PostCard'
 
 
 class PostBoard extends Component {
@@ -19,11 +20,10 @@ class PostBoard extends Component {
           </CardHeader>
           <ListGroup>
             {this.props.posts.map(post => (
-              <ListGroupItem key={post.id}> 
-              <h3>{post.title}</h3>
-              <p>{post.body}</p>
+              <PostCard
+               key={post.id} info={post}>                
+               </PostCard>
               
-               </ListGroupItem>
             ))}
           </ListGroup>
         </Card>
