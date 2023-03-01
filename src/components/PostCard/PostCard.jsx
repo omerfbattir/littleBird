@@ -9,7 +9,7 @@ function PostCard(props) {
 
   function DeletePost() {
     console.log('deleted Data')
-    fetch('http://localhost:3000/posts/' + props.info.id,
+    fetch('https://jsonplaceholder.typicode.com/posts/' + props.info.id,
       {
         method: 'DELETE'
       }).then((response) => response.json())
@@ -18,7 +18,7 @@ function PostCard(props) {
 
   function EditPost() {
     console.log('edited Data')
-    fetch('http://localhost:3000/posts/' + props.info.id,
+    fetch('https://jsonplaceholder.typicode.com/posts/' + props.info.id,
       {
         method: 'PUT',
         body: JSON.stringify({
@@ -54,7 +54,7 @@ function PostCard(props) {
         <div style={{ margin: 15 }} >
           <h3>{props.info.title}</h3>
           <p>{props.info.body}</p>
-          <Button color="primary" onClick={(e) => hendleChangePage(e)} style={{marginRight: 10}} > Edit </Button>
+          <Button color="primary" onClick={(e) => hendleChangePage(e)} style={{ marginRight: 10 }} > Edit </Button>
           <Button color="danger" onClick={(e) => DeletePost(e)} > Delete </Button>
         </div>
       </Card >

@@ -6,8 +6,8 @@ import Navi from '../Navbar/Navbar'
 function App() {
   return (
     <div >
-      <Navi/>
-      <Dashboard/>
+      <Navi />
+      <Dashboard />
     </div>
   )
 }

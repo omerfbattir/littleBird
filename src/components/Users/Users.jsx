@@ -8,7 +8,7 @@ import { Card, CardHeader, ListGroup, ListGroupItem } from 'reactstrap';
 
 function Users(props) {
     useEffect(() => {
-    props.actions.listUser();
+        props.actions.listUser();
     }, [])
     function selectUser(user) {
         props.actions.changeCurrentUser(user);
@@ -50,6 +50,5 @@ function mapDispatchToProps(dispatch) {
         }
     }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Users)

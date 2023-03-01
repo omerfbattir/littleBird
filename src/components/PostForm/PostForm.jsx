@@ -6,9 +6,9 @@ import { connect } from 'react-redux'
 
 function PostForm(props) {
     function postData() {
-    
+
         console.log(props.currentUser.id)
-        fetch('http://localhost:3000/posts',
+        fetch('https://jsonplaceholder.typicode.com/posts',
             {
                 method: 'POST',
                 body: JSON.stringify({
@@ -21,9 +21,9 @@ function PostForm(props) {
                     'Content-type': 'application/json; charset=UTF-8',
                 },
             }).then((response) => response.json()).
-            then(() => props.actions.listPosts(props.currentUser.id));   
+            then(() => props.actions.listPosts(props.currentUser.id));
     }
-    
+
     const [postTitle, setPostTitle] = React.useState('')
     const [postText, setPostText] = React.useState('')
     const hendleChange = (e) => {
@@ -31,13 +31,13 @@ function PostForm(props) {
         postData()
     }
 
-    
+
     return (
-        <div style={{display: 'flex', flexDirection: 'column', gap: 10 }} >
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }} >
             <form onSubmit={(e) => hendleChange(e)} >
-            <Input required='required' type="text" placeholder="Title" onChange={e => setPostTitle(e.target.value)} />
-            <Input required='required' type="textarea" placeholder="What do you want to say?" onChange={e => setPostText(e.target.value)} />
-            <Button block color="primary"  type='submit' > Post </Button>
+                <Input required='required' type="text" placeholder="Title" onChange={e => setPostTitle(e.target.value)} />
+                <Input required='required' type="textarea" placeholder="What do you want to say?" onChange={e => setPostText(e.target.value)} />
+                <Button block color="primary" type='submit' > Post </Button>
             </form>
         </div>
     )

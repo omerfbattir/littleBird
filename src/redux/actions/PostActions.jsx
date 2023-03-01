@@ -1,16 +1,15 @@
 import * as types from './actionTypes';
 
 export function listPosts(userID) {
-    
-    return function(dispatch) {
-        let url = 'http://localhost:3000/posts';
-        if(userID)
-            {
-                url = url + '?userId=' + userID;
-            
-        return fetch(url)
-            .then(response => response.json()).
-            then(result => dispatch(listPostSuccess(result)))
+
+    return function (dispatch) {
+        let url = 'https://jsonplaceholder.typicode.com/posts';
+        if (userID) {
+            url = url + '?userId=' + userID;
+
+            return fetch(url)
+                .then(response => response.json()).
+                then(result => dispatch(listPostSuccess(result)))
         }
     }
 }
