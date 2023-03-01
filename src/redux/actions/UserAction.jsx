@@ -9,7 +9,7 @@ export function changeCurrentUser(user) {
 
 export function listUsers() {
     return function(dispatch) {
-        let url = 'https://jsonplaceholder.typicode.com/users';
+        let url = ' http://localhost:3000/users';
         return fetch(url)
             .then(response => response.json())
             .then(result => dispatch(listUsersSuccess(result)));

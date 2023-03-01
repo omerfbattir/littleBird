@@ -6,37 +6,31 @@ import { listPosts } from '../../redux/actions/PostActions'
 import { Card, CardHeader, ListGroup, ListGroupItem } from 'reactstrap';
 
 
-class Users extends Component {
-    componentDidMount() {
-        this.props.actions.listUser();
+function Users(props) {
+
+    props.actions.listUser();
+    function selectUser(user) {
+        props.actions.changeCurrentUser(user);
+        props.actions.listPosts(user.id);
     }
 
-    selectUser = user => {
-        this.props.actions.changeCurrentUser(user);
-        this.props.actions.listPosts(user.id);
-        console.log(user);
-    }
-
-    render() {
-        return (
-            <div>
-                <Card>
-                    <CardHeader>
-                        <h1>Users: {this.props.users.length}</h1>
-                    </CardHeader>
-                    <ListGroup>
-                        {this.props.users.map(user => (
-                            <ListGroupItem
-                                active={user.id === this.props.currentUser.id}
-                                onClick={() => this.selectUser(user) }
-                                key={user.id}> {user.username} </ListGroupItem>
-                        ))}
-                    </ListGroup>
-                </Card>
-            </div>
-        )
-    }
-
+    return (
+        <div>
+            <Card>
+                <CardHeader>
+                    <h1>Users: {props.users.length}</h1>
+                </CardHeader>
+                <ListGroup>
+                    {props.users.map(user => (
+                        <ListGroupItem
+                            active={user.id === props.currentUser.id}
+                            onClick={() => selectUser(user)}
+                            key={user.id}> {user.username} </ListGroupItem>
+                    ))}
+                </ListGroup>
+            </Card>
+        </div>
+    )
 }
 
 function mapStateToProps(state) {

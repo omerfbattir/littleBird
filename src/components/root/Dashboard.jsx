@@ -1,11 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Col, Row } from 'reactstrap'
 import Users from '../Users/Users'
 import PostBoard from '../PostBoard/PostBoard'
 import PostForm from '../PostForm/PostForm'
 
-export default class Dashboard extends Component {
-    render() {
+function Dashboard () {
         return (
             <div style={{margin: 30}} >
                 <Row>
@@ -20,5 +19,6 @@ export default class Dashboard extends Component {
                 </Row>
             </div>
         )
-    }
 }
+
+export default Dashboard

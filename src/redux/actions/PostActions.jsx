@@ -3,7 +3,7 @@ import * as types from './actionTypes';
 export function listPosts(userID) {
     
     return function(dispatch) {
-        let url = 'https://jsonplaceholder.typicode.com/posts';
+        let url = 'http://localhost:3000/posts';
         if(userID)
             {
                 url = url + '?userId=' + userID;
