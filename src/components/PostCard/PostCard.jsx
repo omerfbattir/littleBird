@@ -36,13 +36,12 @@ function EditPost() {
     .then(() => props.actions.listPosts(props.currentUser.id));
 }
 
-
   return (
     <Card>
       <div style={{ margin: 15 }} >
         <h3>{props.info.title}</h3>
         <p>{props.info.body}</p>
-        <Button size='sm' style={{ marginRight: 15 }}
+        <Button size='sm' style={{ marginRight: 10 }}
           color='primary' onClick={() => EditPost(props)}
           >Düzenle</Button>
         <Button size='sm' color='danger'

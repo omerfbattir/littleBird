@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useEffect } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { listUsers, changeCurrentUser } from '../../redux/actions/UserAction'
@@ -7,8 +7,9 @@ import { Card, CardHeader, ListGroup, ListGroupItem } from 'reactstrap';
 
 
 function Users(props) {
-
+    useEffect(() => {
     props.actions.listUser();
+    }, [])
     function selectUser(user) {
         props.actions.changeCurrentUser(user);
         props.actions.listPosts(user.id);
@@ -49,6 +50,5 @@ function mapDispatchToProps(dispatch) {
         }
     }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Users)

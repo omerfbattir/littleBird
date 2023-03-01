@@ -4,15 +4,16 @@ import { listPosts } from '../../redux/actions/PostActions'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-function postData(props) {
+function postData(props, title, text) {
+    
     console.log(props.currentUser.id)
     fetch('http://localhost:3000/posts',
         {
             method: 'POST',
             body: JSON.stringify({
                 //TODO: get data from input
-                title: 'updateMassageTitle',
-                body: 'updateMassageBody',
+                title: title,
+                body: text,
                 userId: props.currentUser.id
             }),
             headers: {
@@ -22,14 +23,22 @@ function postData(props) {
         then(() => props.actions.listPosts(props.currentUser.id));   
 }
 
-
-
 function PostForm(props) {
+
+    const [postTitle, setPostTitle] = React.useState('')
+    const [postText, setPostText] = React.useState('')
+    const hendleChange = (e) => {
+        e.preventDefault();
+        postData(props, postTitle, postText)
+    }
+
     return (
         <div style={{display: 'flex', flexDirection: 'column', gap: 10 }} >
-            <Input type="text" placeholder="Title" name='postTitle' />
-            <Input type="textarea" placeholder="What do you want to say?" name='postText' />
-            <Button block color="primary" onClick={() => postData(props)} >Post</Button>
+            <form onSubmit={(e) => hendleChange(e)} >
+            <Input required='required' type="text" re placeholder="Title" onChange={e => setPostTitle(e.target.value)} />
+            <Input required='required' type="textarea" placeholder="What do you want to say?" onChange={e => setPostText(e.target.value)} />
+            <Button block color="primary"  type='submit' > Post </Button>
+            </form>
         </div>
     )
 }
@@ -47,7 +56,5 @@ function mapDispatchToProps(dispatch) {
         }
     }
 }
-
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostForm)
